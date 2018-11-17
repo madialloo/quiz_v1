@@ -1,18 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Visiteurs extends CI_Controller {
+class Matchs extends CI_Controller {
 
     // function to display the default visitor page
     public function index(){
-        $header = "header.php"; // may not be necessary
+        $header = "header.php"; // not necessary
         $footer = "footer";
         $this->load->view('frontend/inc/'.$header);
-        $this->load->view('frontend/main');
+        $this->load->view('frontend/matchs/main');
         $this->load->view('frontend/inc/'.$footer);
     }
-
-
 }
 
 ?>

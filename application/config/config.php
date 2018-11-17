@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // URL to change when putting project on OBIWAN : obiwan2.univ-brest.fr/licence/zdiallomo
-$config['base_url'] = 'localhost/';
+$config['base_url'] = 'http://localhost/quiz/';
 
 /*
 |--------------------------------------------------------------------------
