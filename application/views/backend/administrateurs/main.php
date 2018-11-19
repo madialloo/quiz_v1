@@ -19,9 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <form action="<?php echo site_url("login/auth");?>" target="_blank">
     <!-- include the session functionnality ? -->
-    <?php echo $this->session->flashdata("msg");?>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Login" required name="pseudo"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Mot de passe" required name="pasword"></p>
+    <?php echo $this->session->flashdata('msg');?>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Login" required name="cpt_pseudo"></p>
+      <p><input class="w3-input w3-padding-16" placeholder="Mot de passe" required name="cpt_motdepasse" type="password"></p>
       <!--user remember-me checkbox  -->
       <div class="checkbox">
              <label>

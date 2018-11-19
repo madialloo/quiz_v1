@@ -18,8 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <p>Login / Mot de passe :</p>
 
     <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Login" required name="Login"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Mot de passe" required name="Mot de passe"></p>
+    <p><input class="w3-input w3-padding-16" type="text" placeholder="Login" required name="cpt_pseudo"></p>
+    <p><input class="w3-input w3-padding-16" placeholder="Mot de passe" required name="cpt_motdepasse" type="password"></p>
       <p>
         <button class="w3-button w3-light-grey w3-padding-large" type="submit">
           <i class="fa fa-paper-plane"></i> VALIDER
