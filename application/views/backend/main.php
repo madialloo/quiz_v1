@@ -7,16 +7,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
     <h1 class="w3-jumbo"><span class="w3-hide-small">Centre</span> d'Administration</h1>
     <p>*****&nbsp;Administrateurs & Formateurs&nbsp;*****</p>
-    <img src="<?php echo base_url();?>assets/images/login2.png" alt="admin-image" class="w3-image" width="100" height="100">
+    <img src="<?php echo base_url();?>assets/images/login2.png" alt="admin-image" class="w3-image" width="80" height="80">
   </header>
 </div>
   <!-- Login Section -->
   <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
     <h2 class="w3-text-light-grey">Entrer vos identifiants de connexion:</h2>
     <hr style="width:200px" class="w3-opacity">
-
-    <p>Login / Mot de passe :</p>
-
+    <!-- <p>Login / Mot de passe :</p> -->
     <form action="<?php echo site_url('login/auth');?>"  method="post">
     <!-- include the session functionnality ? -->
     <?php echo $this->session->flashdata('msg');?>

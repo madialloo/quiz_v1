@@ -1,6 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,9 +65,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="btn-group">
                     <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><?php echo $this->session->userdata('cpt_pseudo');?> <span class="caret"></span></button>
                       <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url();?>index.php/administrateurs/display_Fuser">Afficher mon profil</a></li>
+                        <li><a href="<?php echo base_url();?>index.php/formateurs/display_Fuser">Afficher mon profil</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url();?>index.php/administrateurs/update_Fuser">Modifier mon profil</a></li>
+                        <li><a href="<?php echo base_url();?>index.php/formateurs/display_form_update_Fuser">Modifier mon profil</a></li>
                       </ul>
                   </div>
                   <!-- end dropdown menu item  -->                      <!-- start dropdown menu item  -->
@@ -98,13 +95,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- end dropdown menu item for QUIZ settings -->  
                 <!-- start dropdown menu item for QUIZ settings  -->               
                 <div class="btn-group">
-                  <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Actualités <span class="caret"></span></button>
+                  <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Actualites <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                       <li class="divider"></li>
-                      <li><a href="<?php echo base_url();?>index.php/actualites/display_actualite">Afficher une Actualites</a></li>
-                      <li><a href="<?php echo base_url();?>index.php/actualites/create_actualite">Ajouter une Actualites</a></li>
-                      <li><a href="<?php echo base_url();?>index.php/actualites/update_actualite">Modifier une Actualites</a></li>
-                      <li><a href="<?php echo base_url();?>index.php/actualites/delete_actualite">Supprimer une Actualitesz</a></li>
+                      <li><a href="<?php echo base_url();?>index.php/actualites/display_actualite">Afficher une Actualite</a></li>
+                      <li><a href="<?php echo base_url();?>index.php/actualites/create_actualite">Ajouter une Actualite</a></li>
+                      <li><a href="<?php echo base_url();?>index.php/actualites/update_actualite">Modifier une Actualite</a></li>
+                      <li><a href="<?php echo base_url();?>index.php/actualites/delete_actualite">Supprimer une Actualite</a></li>
                     </ul>
                 </div>
                 <!-- end dropdown menu item for QUIZ settings --> 
@@ -144,91 +141,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
-        <!-- Formulaire de mise � jour  -->
-            <form class="form-horizontal" action="<?php echo site_url("administrateurs/register_user");?>" target="_blank" method="post">
-            <fieldset>
-                <!-- include the session functionnality ? -->
-                <?php echo $this->session->flashdata('msg');?>
-                <!-- display the successfull or error message -->
-                <p><?php echo @$error; ?></p> 
-
-            <!-- Form Name -->
-            <legend>Ajouter un utilisateur</legend>
-
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_PSEUDO">Pseudo</label>  
-              <div class="col-md-4">
-              <input id="CPT_PSEUDO" name="CPT_PSEUDO" type="text" placeholder="pseudo" class="form-control input-md" required="">
-              <span class="help-block">Entrer le pseudo de l'utilisateur</span>  
-              </div>
-            </div>
-
-            <!-- Password input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_MOTDEPASSE">Mot de passe</label>
-              <div class="col-md-4">
-                <input id="CPT_MOTDEPASSE" name="CPT_MOTDEPASSE" type="password" placeholder="mot de passe " class="form-control input-md" required="">
-                <span class="help-block">Entrer le mot de passe</span>
-              </div>
-            </div>
-            <!-- Password input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_CONFMOTDEPASSE">Confirmer le mot de passe</label>
-              <div class="col-md-4">
-                <input id="CPT_MOTDEPASSE" name="CPT_CONFMOTDEPASSE" type="password" placeholder="Mot de passe" class="form-control input-md" required="">
-                <span class="help-block">Entrer le mot de pasee</span>
-              </div>
-            </div>
-
-
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_NOM">NOM</label>  
-              <div class="col-md-4">
-              <input id="CPT_NOM" name="CPT_NOM" type="text" placeholder="Nom" class="form-control input-md">
-              <span class="help-block">Entrer le nom de l'utilisateur</span>  
-              </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_PRENOM">PRENOM</label>  
-              <div class="col-md-4">
-              <input id="CPT_PRENOM" name="CPT_PRENOM" type="text" placeholder="Prénom " class="form-control input-md">
-              <span class="help-block">Entrer le prénom de l'utilisateur</span>  
-              </div>
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_ACTIF">STATUS</label>
-              <div class="col-md-4">
-                <select id="CPT_ACTIF" name="CPT_ACTIF" class="form-control"> <!--to add for formateur form : disabled="disabled" --->
-                  <option value="1">ACTIVE</option>
-                  <option value="0">DESACTIVE</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="CPT_TYPE">TYPE </label>
-              <div class="col-md-4">
-                <select id="CPT_TYPE" name="CPT_TYPE" class="form-control"> <!--to add for formateur form : disabled="disabled" --->
-                  <option value="Administrateur">Administrateur</option>
-                  <option value="Formateur">Formateur</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="SUBMIT"></label>
-              <div class="col-md-4">
-                <button id="SUBMIT" name="save_user" type="submit" class="btn btn-primary">Valider</button>
-              </div>
-            </div>
-
-            </fieldset>
-            </form>

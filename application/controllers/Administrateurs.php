@@ -11,20 +11,24 @@ class Administrateurs extends CI_Controller {
         }
         $this->load->model('Administrateurs_model');
     }
-    // function to display the default visitor page
+    /*********************************************** DISPLAY METHODS *****************************  ***/
+    // function to display the default  page
     public function index(){
         $header = 'header';
         $footer = 'footer';
-        $this->load->view('backend/inc/'.$header);
-        $this->load->view('backend/administrateurs/main');
-        $this->load->view('backend/inc/'.$footer);
-
+        $this->load->view('backend/administrateurs/inc/'.$header);
+        $this->load->view('backend/administrateurs/home');
+        $this->load->view('backend/administrateurs/inc/'.$footer);
+        
     }
     // function to display the default admin page whenn logged in
     public function home(){
+        $header = 'header';
+        $footer = 'footer';
+        $this->load->view('backend/administrateurs/inc/'.$header);
         $this->load->view('backend/administrateurs/home');
+        $this->load->view('backend/administrateurs/inc/'.$footer);
     }
-
     // function to display the logged in admin info
     public function display_Auser(){
         $cpt_pseudo = $this->session->userdata('cpt_pseudo');
@@ -32,7 +36,11 @@ class Administrateurs extends CI_Controller {
         $data['users']  = $result->result_array();
         // print the data to see if it contain the expected result
         // print_r($data['users']);
+        $header = 'header';
+        $footer = 'footer';
+        $this->load->view('backend/administrateurs/inc/'.$header);
         $this->load->view('backend/administrateurs/display_Auser',$data);
+        $this->load->view('backend/administrateurs/inc/'.$footer);
     }
     // function to display all admins info
     public function display_Ausers(){
@@ -41,101 +49,77 @@ class Administrateurs extends CI_Controller {
         $data['users']  = $result->result_array();
         // print the data to see if it contain the expected result
         //  print_r($data['users']);
+        $header = 'header';
+        $footer = 'footer';
+        $this->load->view('backend/administrateurs/inc/'.$header);
         $this->load->view('backend/administrateurs/display_Ausers',$data);
+        $this->load->view('backend/administrateurs/inc/'.$footer);
     }
-    // function to display all admins info
-    public function update_Auser(){
+    // function to display update form 'form_update_Auser'
+    public function display_form_update_Auser(){
         $cpt_pseudo = $this->session->userdata('cpt_pseudo');
         $result = $this->Administrateurs_model->get_Auser($cpt_pseudo);
         $data['users']  = $result->result_array();
-        // print the data to see if it contain the expected result
-        //  print_r($data['users']);
-        $this->load->view('backend/administrateurs/display_Ausers',$data);
-    }
-    // load the view that creates a new administrateur
-    public function create_user() {
+        // send the data to the form_update_Auser for display (then update)
         $header = 'header';
         $footer = 'footer';
-        $this->load->view('backend/inc/'.$header);
-        $this->load->view('backend/administrateurs/create_user');
-        $this->load->view('backend/inc/'.$footer);
+        $this->load->view('backend/administrateurs/inc/'.$header);
+        $this->load->view('backend/administrateurs/form_update_Auser',$data);
+        $this->load->view('backend/administrateurs/inc/'.$footer);
     }
-    // gets the data from the view to creates a new administrateur
-  
-    // creating a userAdministrateur -> to Model Comptes
-    public function register_user(){
+    /*********************************************** END DISPLAY METHODS *****************************  ***/
+    
+    /*********************************************** ADD METHODS *****************************  ***/
+    // load the view that creates a new administrateur
+    public function add_Auser() {
+        $header = 'header';
+        $footer = 'footer';
+        $this->load->view('backend/administrateurs/inc/'.$header);
+        $this->load->view('backend/administrateurs/add_Auser',$data);
+        $this->load->view('backend/administrateurs/inc/'.$footer);
+    }
+    /*********************************************** END ADD METHODS *****************************  ***/
+    
+    /*********************************************** UPDATE METHODS *****************************  ***/
+    // update a userAdministrateur -> to Model Comptes
+    public function update_Auser(){
         // if the button having name 'save_administrateur' is selected
-        if($this->input->post('save_user')){
+        if($this->input->post('update_Auser')){
             // make the salt
             $salt = "Ilyade5chose5-en-ce-monde-quil-vaut-mieux_ignorer";
             // make and array of data from the form 'create_formateur'
-                $CPT_PSEUDO  = $this->input->post('CPT_PSEUDO');
-                $CPT_MOTDEPASSE  = hash('sha256',$this->input->post('CPT_MOTDEPASSE').$salt);
-                $CPT_CONFMOTDEPASSE  = hash('sha256',$this->input->post('CPT_CONFMOTDEPASSE').$salt);
-                $CPT_NOM  = $this->input->post('CPT_NOM');
-                $CPT_PRENOM  = $this->input->post('CPT_PRENOM');
-                $CPT_TYPE  = $this->input->post('CPT_TYPE');
-                $CPT_ACTIF  = $this->input->post('CPT_ACTIF');
-                // make the array 
-                 $data = array($CPT_PSEUDO,$CPT_MOTDEPASSE,$CPT_NOM,$CPT_PRENOM,$CPT_TYPE,$CPT_ACTIF);
+            $CPT_PSEUDO  = $this->input->post('CPT_PSEUDO');
+            $CPT_MOTDEPASSE  = hash('sha256',$this->input->post('CPT_MOTDEPASSE').$salt);
+            $CPT_CONFMOTDEPASSE  = hash('sha256',$this->input->post('CPT_CONFMOTDEPASSE').$salt);
+            $CPT_NOM  = $this->input->post('CPT_NOM');
+            $CPT_PRENOM  = $this->input->post('CPT_PRENOM');
             // check the matching of the passwords : if KO reload the form + display error
             if($CPT_MOTDEPASSE != $CPT_CONFMOTDEPASSE){
                 $data['error'] = "Mot de passe non identiques.";
-                $this->load->view('backend/administrateurs/create_user',@$data);
+                $this->load->view('backend/administrateurs/inc/header');
+                $this->load->view('backend/administrateurs/form_update_Auser');
+                $this->load->view('backend/administrateurs/inc/footer');
             }
-            // select * from t_compte_cpt where cpt_pseudo == input cpt_pseudo
-            $que=$this->db->query("select * from t_compte_cpt where cpt_pseudo='$CPT_PSEUDO'");
+            // make the array 
+            $user_info = array($CPT_MOTDEPASSE,$CPT_NOM,$CPT_PRENOM);
+            // insert T_COMPTE_CPT where cpt_pseudo == input cpt_pseudo
+            $upAuser = $this->Administrateurs_model->update_Auser($CPT_PSEUDO,$CPT_MOTDEPASSE,$CPT_NOM,$CPT_PRENOM);
             // get the number of rows found by the previous query
-            $row = $que->num_rows();
-            // if $row > 0 then send an error message , else...
-            if(count($row)>0){
-                $data['error']="<h3 style='color:red'>CPT_PSEUDO  already exists</h3>";
-            } else {
-                // send data array to the model
-                $this->Administrateurs->insert_user($data);
-                // display successfull message ? 
-                $data['error']="<h3 style='color:blue'>Your account created successfully</h3>";
-                // load the confirmation view with the entered data
-                $this->load->view('backend/administrateurs/create_user',@$data);	
+            $row = $upAuser->num_rows();
+            // if $row > 1 then send an error message , else...
+            if(count($row) > 1){
+                $data['error']="<h3 style='color:red'>CPT_PSEUDO doesn't exists</h3>";
+                redirect('administrateurs/display_form_update_Auser');
+            } else {                                
+                redirect('administrateurs/display_Auser');
             }
+            
         }
-               
     }
-    public function getAdministrateurs(){
-        // if the button having name 'save_administrateur' is selected
-        if($this->input->post('save_administrateur')){
-            // make and array of data from the form 'create_formateur'
-                $CPT_PSEUDO  = $this->input->post('CPT_PSEUDO');
-                $CPT_MOTDEPASSE  = hash('sha256',$this->input->post('CPT_MOTDEPASSE'));
-                $CPT_CONFMOTDEPASSE  = hash('sha256',$this->input->post('CPT_CONFMOTDEPASSE'));
-                // check the matching of the passwords : if KO reload the form + display error
-                if($CPT_MOTDEPASSE != $CPT_CONFMOTDEPASSE){
-                    $data['error'] = "Mot de passe non identiques.";
-                    $this->load->view('backend/formateurs/create_formateur',@$data);
-                }
-                $CPT_NOM  = $this->input->post('CPT_NOM');
-                $CPT_PRENOM  = $this->input->post('CPT_PRENOM');
-                $CPT_TYPE  = $this->input->post('CPT_TYPE');
-                $CPT_ACTIF  = $this->input->post('CPT_ACTIF');
-                $data = $data = array($CPT_PSEUDO,$CPT_MOTDEPASSE,$CPT_NOM,$CPT_PRENOM,$CPT_TYPE,$CPT_ACTIF);
-            // select * from t_compte_cpt where cpt_pseudo == input cpt_pseudo
-            $que=$this->db->query("select * from t_compte_cpt where cpt_pseudo=$CPT_PSEUDO");
-            // get the number of rows found by the previous query
-            $row = $que->num_rows();
-            // if $row > 0 then send an error message , else...
-            if(count($row)>0){
-                $data['error']="<h3 style='color:red'>CPT_PSEUDO  already exists</h3>";
-            } else {
-                // send data array to the model
-                $this->Comptes->createAdministrateur($data);
-                // display successfull message ? 
-                $data['error']="<h3 style='color:blue'>Your account created successfully</h3>";
-                // load the confirmation view with the entered data
-                $this->load->view('backend/administrateurs/create_user',@$data);	
-            }
-        }
-               
+    /*********************************************** OTHER METHODS ******************************/
+    // display the logged in user if he cancels the update of his form
+    public function cancel_update_Auser(){
+        redirect('administrateurs/display_Auser');
     }
-    
-
-}
+    /*********************************************** END OTHER METHODS *****************************/
+}    
