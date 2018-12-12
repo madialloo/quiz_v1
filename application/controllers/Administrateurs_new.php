@@ -22,13 +22,13 @@ class Administrateurs extends CI_Controller {
         
     }
     // function to display the default admin page whenn logged in
-    // public function home(){
-    //     $header = 'header';
-    //     $footer = 'footer';
-    //     $this->load->view('backend/administrateurs/inc/'.$header);
-    //     $this->load->view('backend/administrateurs/home');
-    //     $this->load->view('backend/administrateurs/inc/'.$footer);
-    // }
+    public function home(){
+        $header = 'header';
+        $footer = 'footer';
+        $this->load->view('backend/administrateurs/inc/'.$header);
+        $this->load->view('backend/administrateurs/home');
+        $this->load->view('backend/administrateurs/inc/'.$footer);
+    }
     // function to display the logged in admin info
     public function display_Auser(){
         $cpt_pseudo = $this->session->userdata('cpt_pseudo');

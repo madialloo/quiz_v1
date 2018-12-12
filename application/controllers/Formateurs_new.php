@@ -5,11 +5,11 @@ class Formateurs extends CI_Controller {
 
         public function __construct(){
             parent::__construct();
+            $this->load->model('Formateurs_model');
             // check if the 
             if($this->session->userdata('logged_in') !== TRUE){
-                redirect('login');
+              redirect('login');
             }
-            $this->load->model('Formateurs_model');
         }
     /*********************************************** DISPLAY METHODS ********************************/
         // display the default formateur page
@@ -22,13 +22,13 @@ class Formateurs extends CI_Controller {
         }
 
         // function to display the default control  page
-        // public function home(){
-        //     $header = 'header';
-        //     $footer = 'footer';
-        //     $this->load->view('backend/formateurs/inc/'.$header);
-        //     $this->load->view('backend/formateurs/home');
-        //     $this->load->view('backend/formateurs/inc/'.$footer);
-        // }
+        public function home(){
+            $header = 'header';
+            $footer = 'footer';
+            $this->load->view('backend/formateurs/inc/'.$header);
+            $this->load->view('backend/formateurs/home');
+            $this->load->view('backend/formateurs/inc/'.$footer);
+        }
 
         // function to display the logged in admin info
         public function display_Fuser(){

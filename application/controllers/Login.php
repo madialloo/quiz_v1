@@ -40,8 +40,6 @@ class Login extends CI_Controller{
         } elseif($cpt_type === 'Formateur'){
             redirect('Formateurs');
         // access login for else ...
-        } else {
-            redirect('Actualites');
         }
     } else {
         echo $this->session->set_flashdata('msg','Username or Password is Wrong');

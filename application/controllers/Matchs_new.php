@@ -50,9 +50,9 @@ class Matchs extends CI_Controller {
         // print the data to see if it contain the expected result
         print_r($data['matchs']);
         // get the number of rows found by the previous query
-        $row = $data->num_row();
+        $row = $result_match;
         // if $row > 1 then send an error message , else...
-        if($result_match->num_rows > 0){
+        if(count($row) > 0){
             $data['error']="<h3 style='color:red'>MAT_CODE doesn't exists</h3>";
             $this->load->view('frontend/actualites/inc/header');
             $this->load->view('frontend/actualites/home',@$data);
@@ -69,5 +69,9 @@ class Matchs extends CI_Controller {
             $cpt_motdepasse = hash('sha256',$this->input->post('CPT_MOTDEPASSE',TRUE)); 
             $validate = $this->Comptes->validateCompte($cpt_pseudo,$cpt_motdepasse);
             
+            if($validate->num_rows() > 0){
+        }
 }     
 }
+
+?>

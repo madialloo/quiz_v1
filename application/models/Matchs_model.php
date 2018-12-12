@@ -25,7 +25,7 @@ class Matchs_model extends CI_Model {
         $result = $this->db->get('T_MATCH_MAT',1);
         return $result;
     }
-    // fetch all the users from T_COMPTE_CPT & send result to controller : 
+    // fetch all the matchs from T_COMPTE_CPT & send result to controller : 
     public function get_matchs(){
         $this->db->select();
         // $this->db->where('MAT_CODE',$mat_code);

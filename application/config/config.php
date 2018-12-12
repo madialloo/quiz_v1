@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// URL to change when putting project on OBIWAN : obiwan2.univ-brest.fr/licence/zdiallomo
+// URL to change when putting project on OBIWAN : obiwan2.univ-brest.fr/licence/lic33/
 $config['base_url'] = 'http://localhost/quiz/';
 
 /*

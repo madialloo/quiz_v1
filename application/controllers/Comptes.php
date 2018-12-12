@@ -26,15 +26,18 @@ class Comptes extends CI_Controller{
           $this->load->view('backend/formateurs/home');
         }else{
             echo "Access Denied";
+            redirect('Actualites');
         }
       }
     
       public function me(){ // to change
         //Allowing acces to author only
         if($this->session->userdata('cpt_type')===''){
-          $this->load->view('frontend/home');
+          $this->load->view('Actualites');
+          redirect('Actualites');
         }else{
-            echo "Access Denied";
+          echo "Access Denied";
+          redirect('Actualites');
         }
       }
  

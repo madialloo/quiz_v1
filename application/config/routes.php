@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'actualites/index';
 $route['backend/:any'] = 'login';
-$route['frontend/:any'] = 'visiteurs';
+$route['backend/backend/:any'] = 'login';
+$route['frontend/:any'] = 'actualites';
 // $route['administrateurs/:any'] = 'administrateurs/index';
 // $route['formateurs/:any'] = 'formateurs/index';
 $route['quiz/:any'] = 'actualites/index';
